@@ -9,7 +9,8 @@ class Native extends LoadingStrategy {
 
     try {
       return {
-        compile: options => String(execSync(command, { input: options })),
+        compile: options => String(execSync(command, { input: options,
+                                                       maxBuffer: 1024 * 1024 * 4 })),
         version: () => versionString
       };
     } catch (error) {
